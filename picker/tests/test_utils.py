@@ -1,5 +1,6 @@
-from letsgo.utils import (User, Venue, check_venue, filter_venues,
-                          process_users, process_venues)
+from picker.models import User, Venue
+from picker.utils import (check_venue, filter_venues, process_users,
+                          process_venues)
 
 
 def test_check_full_venue():

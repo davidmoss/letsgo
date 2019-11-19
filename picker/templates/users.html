@@ -1,0 +1,37 @@
+<form method="post">
+  {% csrf_token %}
+  Select your users:
+  <ul>
+    {% for user in users %}
+    <li>
+      <label>
+        <input type='checkbox' name='user' value='{{forloop.counter}}' {% if forloop.counter|slugify in selected %}checked{% endif %}/>
+        {{ user.name }}
+      </label>
+    </li>
+    {% endfor %}
+  </ul>
+  <input type="submit" value="Select Venue" />
+</form>
+{% if venues %}
+Places to go:
+<ul>
+  {% for venue in venues %}
+  <li>{{ venue.name }}</li>
+  {% endfor %}
+</ul>
+{% endif %}
+{% if rejects %}
+Places to avoid:
+<ul>
+  {% for venue, people in rejects.items %}
+  <li>{{ venue }}
+    <ul>
+      {% for person in people %}
+        <li>{{person.person.name}} {{person.reason}}</li>
+      {% endfor %}
+    </ul>
+  </li>
+  {% endfor %}
+</ul>
+{% endif %}

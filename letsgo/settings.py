@@ -25,7 +25,7 @@ SECRET_KEY = 'pld*v_fcj6ipealwjpm4tricwm&&-i^=(-_-_j0&+gu&j(^4up'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ["localhost", "0.0.0.0", "127.0.0.1"]
 
 
 # Application definition
@@ -37,6 +37,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'picker.apps.PickerConfig',
 ]
 
 MIDDLEWARE = [
