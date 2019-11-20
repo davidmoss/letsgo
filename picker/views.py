@@ -11,11 +11,17 @@ class PickerView(TemplateView):
     extra_context = {'users': users}
 
     def post(self, request, *args, **kwargs):
+        # Get the list of users chosen by their index
         selection = request.POST.getlist('user')
-        selected_users = [users[int(i)] for i in selection]
-        selected_venues, rejected_venues = filter_venues(venues, selected_users)
+        selected_users = [users[int(i)-1] for i in selection]
+        selected_venues, rejected_venues = filter_venues(
+            venues=venues, users=selected_users
+        )
+
+        # Add the results to the context
         context = self.get_context_data(**kwargs)
         context['venues'] = selected_venues
         context['rejects'] = dict(rejected_venues)
         context['selected'] = selection
+
         return self.render_to_response(context)
